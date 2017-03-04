@@ -1,0 +1,15 @@
+{
+  "name": "zengenuity/zoom-sdk",
+  "description": "SDK for Zoom Meetings/Webinars (https://zoom.us)",
+  "authors": [
+    {
+      "name": "Wayne Eaker",
+      "email": "wayne@zengenuity.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Zengenuity\\Zoom\\": "src/"
+    }
+  }
+}
