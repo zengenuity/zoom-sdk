@@ -620,7 +620,7 @@ class Meeting {
       $meeting->setDuration($array['duration']);
     }
     if (!empty($array['timezone'])) {
-      $meeting->setTimezone($array['timezone']);
+      $meeting->setTimezone(new \DateTimeZone($array['timezone']));
     }
     if (!empty($array['password'])) {
       $meeting->setPassword($array['password']);
@@ -653,7 +653,7 @@ class Meeting {
       $meeting->setOptionAlternateHostIds($array['option_alternative_host_ids']);
     }
     if (!is_null($array['option_use_pmi'])) {
-      $meeting->getOptionUsePmi($array['option_use_pmi']);
+      $meeting->setOptionUsePmi($array['option_use_pmi']);
     }
     if (!empty($array['status'])) {
       $meeting->setStatus($array['status']);
