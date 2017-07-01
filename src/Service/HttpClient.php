@@ -15,7 +15,7 @@ class HttpClient {
    * @param string $url
    * @param array $data
    * @return object
-   * @throws \Error
+   * @throws \Exception
    */
   public function post($url, $data = []){
     $postFields = http_build_query($data);
@@ -32,7 +32,7 @@ class HttpClient {
     }
     $response = json_decode($response);
     if (!empty($response->error)) {
-      throw new \Error($response->error->message, $response->error->code);
+      throw new \Exception($response->error->message, $response->error->code);
     }
     
     return $response;

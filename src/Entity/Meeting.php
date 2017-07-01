@@ -8,6 +8,9 @@ class Meeting {
   const TYPE_SCHEDULED_MEETING = 2;
   const TYPE_RECURRING_MEETING = 3;
   const TYPE_RECURRING_MEETING_FIXED_TIME = 8;
+  const TYPE_WEBINAR = 5;
+  const TYPE_RECURRENCE_WEBINAR = 6;
+  const TYPE_RECURRING_WEBINAR_FIXED_TIME = 9;
   
   const AUDIO_TELEPHONY = 'telephony';
   const AUDIO_VOIP = 'voip';
@@ -85,6 +88,11 @@ class Meeting {
   /**
    * @var bool
    */
+  protected $optionStartPanelistVideo;
+
+  /**
+   * @var bool
+   */
   protected $optionStartParticipantVideo;
 
   /**
@@ -153,7 +161,7 @@ class Meeting {
 
   /**
    * @param int $id
-   * @return Meeting
+   * @return $this
    */
   public function setId($id) {
     $this->id = $id;
@@ -169,7 +177,7 @@ class Meeting {
 
   /**
    * @param string $uuid
-   * @return Meeting
+   * @return $this
    */
   public function setUuid($uuid) {
     $this->uuid = $uuid;
@@ -185,7 +193,7 @@ class Meeting {
 
   /**
    * @param string $startUrl
-   * @return Meeting
+   * @return $this
    */
   public function setStartUrl($startUrl) {
     $this->startUrl = $startUrl;
@@ -201,7 +209,7 @@ class Meeting {
 
   /**
    * @param string $joinUrl
-   * @return Meeting
+   * @return $this
    */
   public function setJoinUrl($joinUrl) {
     $this->joinUrl = $joinUrl;
@@ -217,7 +225,7 @@ class Meeting {
 
   /**
    * @param string $hostId
-   * @return Meeting
+   * @return $this
    */
   public function setHostId($hostId) {
     $this->hostId = $hostId;
@@ -233,7 +241,7 @@ class Meeting {
 
   /**
    * @param string $topic
-   * @return Meeting
+   * @return $this
    */
   public function setTopic($topic) {
     $this->topic = $topic;
@@ -249,7 +257,7 @@ class Meeting {
 
   /**
    * @param int $type
-   * @return Meeting
+   * @return $this
    */
   public function setType($type) {
     $this->type = $type;
@@ -265,7 +273,7 @@ class Meeting {
 
   /**
    * @param \DateTime $startTime
-   * @return Meeting
+   * @return $this
    */
   public function setStartTime($startTime) {
     $this->startTime = $startTime;
@@ -281,7 +289,7 @@ class Meeting {
 
   /**
    * @param \DateTimeZone $timezone
-   * @return Meeting
+   * @return $this
    */
   public function setTimezone($timezone) {
     $this->timezone = $timezone;
@@ -297,7 +305,7 @@ class Meeting {
 
   /**
    * @param int $duration
-   * @return Meeting
+   * @return $this
    */
   public function setDuration($duration) {
     $this->duration = $duration;
@@ -313,7 +321,7 @@ class Meeting {
 
   /**
    * @param string $password
-   * @return Meeting
+   * @return $this
    */
   public function setPassword($password) {
     $this->password = $password;
@@ -329,7 +337,7 @@ class Meeting {
 
   /**
    * @param bool $optionJoinBeforeHost
-   * @return Meeting
+   * @return $this
    */
   public function setOptionJoinBeforeHost($optionJoinBeforeHost) {
     $this->optionJoinBeforeHost = $optionJoinBeforeHost;
@@ -344,8 +352,25 @@ class Meeting {
   }
 
   /**
+   * @return bool
+   */
+  public function getOptionStartPanelistVideo(): bool {
+    return $this->optionStartPanelistVideo;
+  }
+
+  /**
+   * @param bool $optionStartPanelistVideo
+   *
+   * @return $this
+   */
+  public function setOptionStartPanelistVideo(bool $optionStartPanelistVideo): Meeting {
+    $this->optionStartPanelistVideo = $optionStartPanelistVideo;
+    return $this;
+  }
+
+  /**
    * @param bool $optionStartHostVideo
-   * @return Meeting
+   * @return $this
    */
   public function setOptionStartHostVideo($optionStartHostVideo) {
     $this->optionStartHostVideo = $optionStartHostVideo;
@@ -361,7 +386,7 @@ class Meeting {
 
   /**
    * @param bool $optionStartParticipantVideo
-   * @return Meeting
+   * @return $this
    */
   public function setOptionStartParticipantVideo($optionStartParticipantVideo) {
     $this->optionStartParticipantVideo = $optionStartParticipantVideo;
@@ -377,7 +402,7 @@ class Meeting {
 
   /**
    * @param string $optionAudio
-   * @return Meeting
+   * @return $this
    */
   public function setOptionAudio($optionAudio) {
     $this->optionAudio = $optionAudio;
@@ -393,7 +418,7 @@ class Meeting {
 
   /**
    * @param bool $optionEnforceLogin
-   * @return Meeting
+   * @return $this
    */
   public function setOptionEnforceLogin($optionEnforceLogin) {
     $this->optionEnforceLogin = $optionEnforceLogin;
@@ -409,7 +434,7 @@ class Meeting {
 
   /**
    * @param string $optionEnforceLoginDomains
-   * @return Meeting
+   * @return $this
    */
   public function setOptionEnforceLoginDomains($optionEnforceLoginDomains) {
     $this->optionEnforceLoginDomains = $optionEnforceLoginDomains;
@@ -425,7 +450,7 @@ class Meeting {
 
   /**
    * @param string $optionAlternateHosts
-   * @return Meeting
+   * @return $this
    */
   public function setOptionAlternateHosts($optionAlternateHosts) {
     $this->optionAlternateHosts = $optionAlternateHosts;
@@ -441,7 +466,7 @@ class Meeting {
 
   /**
    * @param string $h323Password
-   * @return Meeting
+   * @return $this
    */
   public function setH323Password($h323Password) {
     $this->h323Password = $h323Password;
@@ -457,7 +482,7 @@ class Meeting {
 
   /**
    * @param \DateTime $createdAt
-   * @return Meeting
+   * @return $this
    */
   public function setCreatedAt($createdAt) {
     $this->createdAt = $createdAt;
@@ -473,7 +498,7 @@ class Meeting {
 
   /**
    * @param int $status
-   * @return Meeting
+   * @return $this
    */
   public function setStatus($status) {
     $this->status = $status;
@@ -489,7 +514,7 @@ class Meeting {
 
   /**
    * @param string $optionAlternateHostIds
-   * @return Meeting
+   * @return $this
    */
   public function setOptionAlternateHostIds($optionAlternateHostIds) {
     $this->optionAlternateHostIds = $optionAlternateHostIds;
@@ -505,7 +530,7 @@ class Meeting {
 
   /**
    * @param bool $optionUsePmi
-   * @return Meeting
+   * @return $this
    */
   public function setOptionUsePmi($optionUsePmi) {
     $this->optionUsePmi = $optionUsePmi;
@@ -563,6 +588,9 @@ class Meeting {
     if (!is_null($this->getOptionStartHostVideo())) {
       $array['option_host_video'] = $this->getOptionStartHostVideo();
     }
+    if (!is_null($this->getOptionStartPanelistVideo())) {
+      $array['option_panelist_video'] = $this->getOptionStartPanelistVideo();
+    }
     if (!is_null($this->getOptionStartParticipantVideo())) {
       $array['option_participants_video'] = $this->getOptionStartParticipantVideo();
     }
@@ -593,7 +621,7 @@ class Meeting {
 
   /**
    * @param array $array
-   * @return Meeting
+   * @return $this
    */
   static function fromArray($array) {
     $meeting = new Meeting($array['host_id'], $array['topic'], $array['type']);
@@ -628,13 +656,16 @@ class Meeting {
     if (!empty($array['h323_password'])) {
       $meeting->setH323Password($array['h323_password']);
     }
-    if (!is_null($array['option_jbh'])) {
+    if (isset($array['option_jbh']) && !is_null($array['option_jbh'])) {
       $meeting->setOptionJoinBeforeHost($array['option_jbh']);
     }
     if (!is_null($array['option_host_video'])) {
       $meeting->setOptionStartHostVideo($array['option_host_video']);
     }
-    if (!is_null($array['option_participants_video'])) {
+    if (isset($array['option_panelist_video']) && !is_null($array['option_panelist_video'])) {
+      $meeting->setOptionStartPanelistVideo($array['option_panelist_video']);
+    }
+    if (isset($array['option_participants_video']) && !is_null($array['option_participants_video'])) {
       $meeting->setOptionStartParticipantVideo($array['option_participants_video']);
     }
     if (!is_null($array['option_audio'])) {
@@ -652,7 +683,7 @@ class Meeting {
     if (!empty($array['option_alternative_host_ids'])) {
       $meeting->setOptionAlternateHostIds($array['option_alternative_host_ids']);
     }
-    if (!is_null($array['option_use_pmi'])) {
+    if (isset($array['option_use_pmi']) && !is_null($array['option_use_pmi'])) {
       $meeting->setOptionUsePmi($array['option_use_pmi']);
     }
     if (!empty($array['status'])) {
