@@ -354,7 +354,7 @@ class Meeting {
   /**
    * @return bool
    */
-  public function getOptionStartPanelistVideo(): bool {
+  public function getOptionStartPanelistVideo() {
     return $this->optionStartPanelistVideo;
   }
 
@@ -363,7 +363,7 @@ class Meeting {
    *
    * @return $this
    */
-  public function setOptionStartPanelistVideo(bool $optionStartPanelistVideo): Meeting {
+  public function setOptionStartPanelistVideo($optionStartPanelistVideo) {
     $this->optionStartPanelistVideo = $optionStartPanelistVideo;
     return $this;
   }
