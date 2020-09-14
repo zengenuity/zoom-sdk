@@ -53,12 +53,11 @@ class ZoomAPI {
    * @return User
    */
   public function getUserByEmail($email, $login_type = ZoomAPI::LOGIN_TYPE_ZOOM) {
-    $request_url = $this->apiUrl . '/user/getbyemail';
-    $data = $this->prepareData([
-      'email' => $email,
+    $request_url = $this->apiUrl . '/users/' . $email;
+    $data = [
       'login_type' => $login_type,
-    ]);
-    $response = $this->client->post($request_url, $data);
+    ];
+    $response = $this->client->get($request_url, $data);
     return User::fromArray((array) $response);
   }
 
@@ -68,7 +67,7 @@ class ZoomAPI {
       Meeting::TYPE_RECURRENCE_WEBINAR,
       Meeting::TYPE_RECURRING_WEBINAR_FIXED_TIME,
     ];
-    return in_array($meeting->getType(), $webinar_types) ? 'webinar' : 'meeting';
+    return in_array($meeting->getType(), $webinar_types) ? 'webinars' : 'users/' . $meeting->getHostId() . '/meetings';
   }
 
   /**
@@ -77,8 +76,8 @@ class ZoomAPI {
    */
   public function createMeeting(Meeting $meeting) {
     $endpoint = $this->getEndpoint($meeting);
-    $request_url = $this->apiUrl . '/' . $endpoint . '/create';
-    $data = $this->prepareData($meeting->toArray());
+    $request_url = $this->apiUrl . '/' . $endpoint;
+    $data = $meeting->toArray();
     $response = $this->client->post($request_url, $data);
     return Meeting::fromArray((array) $response);
   }
@@ -89,10 +88,14 @@ class ZoomAPI {
    */
   public function updateMeeting(Meeting $meeting) {
     $endpoint = $this->getEndpoint($meeting);
-    $request_url = $this->apiUrl . '/' . $endpoint . '/update';
-    $data = $this->prepareData($meeting->toArray());
-    $response = $this->client->post($request_url, $data);
-    return $this->getMeeting($response->id, $meeting->getHostId(), $endpoint);
+    $request_url = $this->apiUrl . '/meetings/' . $meeting->getId();
+    $update_meeting = new Meeting($meeting->getHostId(), $meeting->getTopic(), $meeting->getType());
+    $update_meeting->setStartTime($meeting->getStartTime())
+      ->setTimezone($meeting->getTimezone())
+      ->setDuration($meeting->getDuration());
+    $data = $update_meeting->toArray();
+    $response = $this->client->patch($request_url, $data);
+    return $meeting;
   }
 
   /**
@@ -101,21 +104,20 @@ class ZoomAPI {
    *
    * @return \Zengenuity\Zoom\Entity\Meeting
    */
-  public function getMeeting($id, $host_id, $endpoint = 'meeting') {
-    $request_url = $this->apiUrl . '/' . $endpoint . '/get';
-    $data = $this->prepareData(['id' => $id, 'host_id' => $host_id]);
-    $response = $this->client->post($request_url, $data);
+  public function getMeeting($id, $host_id, $endpoint = 'meetings') {
+    $request_url = $this->apiUrl . '/' . $endpoint;
+    $data = ['id' => $id, 'host_id' => $host_id];
+    $response = $this->client->get($request_url, $data);
     return Meeting::fromArray((array) $response);
   }
 
   /**
-   * @param string $id
+   * @param Meeting $id
    * @param string $host_id
    */
-  public function deleteMeeting($id, $host_id, $endpoint = 'meeting') {
-    $request_url = $this->apiUrl . '/' . $endpoint . '/delete';
-    $data = $this->prepareData(['id' => $id, 'host_id' => $host_id]);
-    $this->client->post($request_url, $data);
+  public function deleteMeeting(Meeting $meeting) {
+    $request_url = $this->apiUrl . '/meetings/' . $meeting->getId();
+    $this->client->delete($request_url);
   }
 
   /**

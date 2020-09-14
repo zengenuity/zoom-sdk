@@ -586,13 +586,13 @@ class Meeting {
       $array['option_jbh'] = $this->getOptionJoinBeforeHost();
     }
     if (!is_null($this->getOptionStartHostVideo())) {
-      $array['option_host_video'] = $this->getOptionStartHostVideo();
+      $array['settings']['host_video'] = $this->getOptionStartHostVideo();
     }
     if (!is_null($this->getOptionStartPanelistVideo())) {
       $array['option_panelist_video'] = $this->getOptionStartPanelistVideo();
     }
     if (!is_null($this->getOptionStartParticipantVideo())) {
-      $array['option_participants_video'] = $this->getOptionStartParticipantVideo();
+      $array['settings']['participant_video'] = $this->getOptionStartParticipantVideo();
     }
     if (!is_null($this->getOptionAudio())) {
       $array['option_audio'] = $this->getOptionAudio();
@@ -656,40 +656,10 @@ class Meeting {
     if (!empty($array['h323_password'])) {
       $meeting->setH323Password($array['h323_password']);
     }
-    if (isset($array['option_jbh']) && !is_null($array['option_jbh'])) {
-      $meeting->setOptionJoinBeforeHost($array['option_jbh']);
-    }
-    if (!is_null($array['option_host_video'])) {
-      $meeting->setOptionStartHostVideo($array['option_host_video']);
-    }
-    if (isset($array['option_panelist_video']) && !is_null($array['option_panelist_video'])) {
-      $meeting->setOptionStartPanelistVideo($array['option_panelist_video']);
-    }
-    if (isset($array['option_participants_video']) && !is_null($array['option_participants_video'])) {
-      $meeting->setOptionStartParticipantVideo($array['option_participants_video']);
-    }
-    if (!is_null($array['option_audio'])) {
-      $meeting->setOptionAudio($array['option_audio']);
-    }
-    if (!is_null($array['option_enforce_login'])) {
-      $meeting->setOptionEnforceLogin($array['option_enforce_login']);
-    }
-    if (!is_null($array['option_enforce_login_domains'])) {
-      $meeting->setOptionEnforceLoginDomains($array['option_enforce_login_domains']);
-    }
-    if (!empty($array['option_alternative_hosts'])) {
-      $meeting->setOptionAlternateHosts($array['option_alternative_hosts']);
-    }
-    if (!empty($array['option_alternative_host_ids'])) {
-      $meeting->setOptionAlternateHostIds($array['option_alternative_host_ids']);
-    }
-    if (isset($array['option_use_pmi']) && !is_null($array['option_use_pmi'])) {
-      $meeting->setOptionUsePmi($array['option_use_pmi']);
-    }
+
     if (!empty($array['status'])) {
       $meeting->setStatus($array['status']);
     }
-    
     return $meeting;
   }
 

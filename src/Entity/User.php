@@ -1205,110 +1205,11 @@ class User {
     if (!empty($array['last_name'])) {
       $user->setLastName($array['last_name']);
     }
-    if (!is_null($array['disable_chat'])) {
-      $user->setDisableChat($array['disable_chat']);
-    }
-    if (!is_null($array['enable_e2e_encryption'])) {
-      $user->setEnableE2EEncryption($array['enable_e2e_encryption']);
-    }
-    if (!is_null($array['enable_silent_mode'])) {
-      $user->setEnableSilentMode($array['enable_silent_mode']);
-    }
-    if (!is_null($array['disable_group_hd'])) {
-      $user->setDisabledGroupHd($array['disable_group_hd']);
-    }
-    if (!is_null($array['disable_recording'])) {
-      $user->setDisableRecording($array['disable_recording']);
-    }
-    if (!is_null($array['enable_cmr'])) {
-      $user->setEnableCloudMeetingRecord($array['enable_cmr']);
-    }
-    if (!is_null($array['enable_auto_recording'])) {
-      $user->setEnableAutoRecording($array['enable_auto_recording']);
-    }
-    if (!is_null($array['enable_cloud_auto_recording'])) {
-      $user->setEnableCloudAutoRecording($array['enable_cloud_auto_recording']);
-    }
     if (!is_null($array['verified'])) {
       $user->setVerified((bool) $array['verified']);
     }
     if (!empty($array['pmi'])) {
       $user->setPersonalMeetingId($array['pmi']);
-    }
-    if (!is_null($array['meeting_capacity'])) {
-      $user->setMeetingCapacity($array['meeting_capacity']);
-    }
-    if (!is_null($array['enable_webinar'])) {
-      $user->setEnableWebinar($array['enable_webinar']);
-    }
-    if (!is_null($array['webinar_capacity'])) {
-      $user->setWebinarCapacity($array['webinar_capacity']);
-    }
-    if (!is_null($array['enable_large'])) {
-      $user->setEnableLarge($array['enable_large']);
-    }
-    if (!is_null($array['large_capacity'])) {
-      $user->setLargeCapacity($array['large_capacity']);
-    }
-    if (!is_null($array['disable_feedback'])) {
-      $user->setDisableFeedback($array['disable_feedback']);
-    }
-    if (!is_null($array['disable_jbh_reminder'])) {
-      $user->setDisableJoinBeforeHostReminder($array['disable_jbh_reminder']);
-    }
-    if (!is_null($array['enable_breakout_room'])) {
-      $user->setEnableBreakoutRoom($array['enable_breakout_room']);
-    }
-    if (!is_null($array['enable_polling'])) {
-      $user->setEnablePolling($array['enable_polling']);
-    }
-    if (!is_null($array['enable_annotation'])) {
-      $user->setEnableAnnotation($array['enable_annotation']);
-    }
-    if (!is_null($array['enable_share_dual_camera'])) {
-      $user->setEnableShareDualCamera($array['enable_share_dual_camera']);
-    }
-    if (!is_null($array['enable_far_end_camera_control'])) {
-      $user->setEnableFarEndCameraControl($array['enable_far_end_camera_control']);
-    }
-    if (!is_null($array['disable_private_chat'])) {
-      $user->setDisablePrivateChat($array['disable_private_chat']);
-    }
-    if (!is_null($array['enable_enter_exit_chime'])) {
-      $user->setEnableEnterExitChime($array['enable_enter_exit_chime']);
-    }
-    if (!is_null($array['disable_cancel_meeting_notification'])) {
-      $user->setDisableCancelMeetingNotification($array['disable_cancel_meeting_notification']);
-    }
-    if (!is_null($array['enable_remote_support'])) {
-      $user->setEnableRemoteSupport($array['enable_remote_support']);
-    }
-    if (!is_null($array['enable_file_transfer'])) {
-      $user->setEnableFileTransfer($array['enable_file_transfer']);
-    }
-    if (!is_null($array['enable_virtual_background'])) {
-      $user->setEnableVirtualBackground($array['enable_virtual_background']);
-    }
-    if (!is_null($array['enable_closed_caption'])) {
-      $user->setEnableClosedCaption($array['enable_closed_caption']);
-    }
-    if (!is_null($array['enable_file_transfer'])) {
-      $user->setEnableFileTransfer($array['enable_file_transfer']);
-    }
-    if (!is_null($array['enable_co_host'])) {
-      $user->setEnableCoHost($array['enable_co_host']);
-    }
-    if (!is_null($array['enable_auto_saving_chats'])) {
-      $user->setEnableAutoSavingChats($array['enable_auto_saving_chats']);
-    }
-    if (!is_null($array['enable_phone_participants_password'])) {
-      $user->setEnablePhoneParticipantsPassword($array['enable_phone_participants_password']);
-    }
-    if (!is_null($array['enable_auto_delete_cmr'])) {
-      $user->setEnableAutoDeleteCloudMeetingRecord($array['enable_auto_delete_cmr']);
-    }
-    if (!empty($array['dept'])) {
-      $user->setDepartment($array['dept']);
     }
     if (!empty($array['lastClientVersion'])) {
       $user->setLastClientVersion($array['lastClientVersion']);
@@ -1316,25 +1217,6 @@ class User {
     if (!empty($array['lastLoginTime'])) {
       $user->setLastLoginTime(new \DateTime($array['lastLoginTime']));
     }
-    if (!empty($array['token'])) {
-      $user->setDepartment($array['token']);
-    }
-    if (!empty($array['zpk'])) {
-      $user->setDepartment($array['zpk']);
-    }
-    if (!empty($array['group_id'])) {
-      $user->setDepartment($array['group_id']);
-    }
-    if (!empty($array['imgroup_id'])) {
-      $user->setDepartment($array['imgroup_id']);
-    }
-    if (!empty($array['vanity_url'])) {
-      $user->setDepartment($array['vanity_url']);
-    }
-    if (!is_null($array['dept'])) {
-      $user->setDepartment($array['dept']);
-    }
-    
     return $user;
   }
   
