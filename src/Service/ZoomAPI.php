@@ -7,8 +7,8 @@ use Zengenuity\Zoom\Entity\User;
 use Zengenuity\Zoom\Entity\Webinar;
 
 class ZoomAPI {
-  
-  const LOGIN_TYPE_FACEBOOK = 0; 
+
+  const LOGIN_TYPE_FACEBOOK = 0;
   const LOGIN_TYPE_GOOGLE = 1;
   const LOGIN_TYPE_API = 99;
   const LOGIN_TYPE_ZOOM = 100;
@@ -40,11 +40,11 @@ class ZoomAPI {
    * @param $apiSecret
    * @param string $apiUrl
    */
-  public function __construct($apiKey, $apiSecret, $apiUrl = 'https://api.zoom.us/v1') {
+  public function __construct($apiKey, $apiSecret, $apiUrl = 'https://api.zoom.us/v2') {
     $this->apiUrl = $apiUrl;
     $this->apiKey = $apiKey;
     $this->apiSecret = $apiSecret;
-    $this->client = new HttpClient();
+    $this->client = new HttpClient($apiKey, $apiSecret);
   }
 
   /**
@@ -61,7 +61,7 @@ class ZoomAPI {
     $response = $this->client->post($request_url, $data);
     return User::fromArray((array) $response);
   }
-  
+
   private function getEndpoint(Meeting $meeting) {
     $webinar_types = [
       Meeting::TYPE_WEBINAR,
@@ -98,7 +98,7 @@ class ZoomAPI {
   /**
    * @param string $id
    * @param string $host_id
-   * 
+   *
    * @return \Zengenuity\Zoom\Entity\Meeting
    */
   public function getMeeting($id, $host_id, $endpoint = 'meeting') {
@@ -128,7 +128,7 @@ class ZoomAPI {
     $data['data_type'] = 'JSON';
     return $data;
   }
-  
+
 
 
 }
