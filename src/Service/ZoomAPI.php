@@ -100,14 +100,12 @@ class ZoomAPI {
 
   /**
    * @param string $id
-   * @param string $host_id
    *
    * @return \Zengenuity\Zoom\Entity\Meeting
    */
-  public function getMeeting($id, $host_id, $endpoint = 'meetings') {
-    $request_url = $this->apiUrl . '/' . $endpoint;
-    $data = ['id' => $id, 'host_id' => $host_id];
-    $response = $this->client->get($request_url, $data);
+  public function getMeeting($id, $endpoint = 'meetings') {
+    $request_url = $this->apiUrl . '/meetings/' . $id;
+    $response = $this->client->get($request_url, []);
     return Meeting::fromArray((array) $response);
   }
 
